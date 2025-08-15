@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="auth.js"></script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>EduConnect — Resources</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .nav-right {
+        margin-left: auto;
+      }
+      .settings-emoji {
+        font-size: 36px;
+        text-decoration: none;
+        margin-left: 15px;
+      }
+      .settings-emoji:hover {
+        opacity: 0.8;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header small-header">
+      <div class="topbar container">
+        <div class="brand">EduConnect</div>
+        <div class="controls">
+          <button class="btn-lang" data-lang="en">EN</button>
+          <button class="btn-lang" data-lang="hi">HI</button>
+          <button class="btn-lang" data-lang="kn">KO</button>
+          <div class="hero-right">
+            <button class="btn-logout" onclick="logout()">Logout</button>
+          </div>
+        </div>
+      </div>
+      <nav class="nav container" role="navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="resources.html" class="nav-link active">Resources</a>
+        <a href="mentorship.html" class="nav-link">Mentorship</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <div class="nav-right">
+          <a href="settings.html" class="settings-emoji">⚙️</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="resource-intro">
+        <h1 data-i18n="res_heading">Free Resources for Goa Board Students</h1>
+        <p class="muted" data-i18n="res_sub">
+          Notes, short videos, and quick quizzes sorted by subject and grade
+          level.
+        </p>
+      </section>
+
+      <section class="resource-grid">
+        <article class="res-card">
+          <img
+            src="https://pngimg.com/d/book_PNG51090.png"
+            alt="Notes"
+            loading="lazy"
+          />
+          <div class="res-content">
+            <h3 data-i18n="res_notes_title">Downloadable Notes (Class 10)</h3>
+            <p data-i18n="res_notes_text">
+              PDF notes for Maths, Science & English — offline friendly.
+            </p>
+            <div class="actions">
+              <a href="#" class="btn-outline">Download PDF</a>
+              <a href="#" class="btn-primary">View</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="res-card">
+          <img
+            src="https://t6866c.csb.app/VID.jpg"
+            alt="Video"
+            loading="lazy"
+          />
+          <div class="res-content">
+            <h3 data-i18n="res_videos_title">Short Concept Videos</h3>
+            <p data-i18n="res_videos_text">
+              2–5 minute videos focusing on difficult topics. (YouTube embed or
+              downloadable mp4)
+            </p>
+            <div class="actions">
+              <a href="#" class="btn-outline">Watch Playlist</a>
+              <a href="#" class="btn-primary">Download (mp4)</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="res-card">
+          <img
+            src="https://media.istockphoto.com/id/1616906708/vector/vector-speech-bubble-with-quiz-time-words-trendy-text-balloon-with-geometric-grapic-shape.jpg?s=612x612&w=0&k=20&c=3-qsji8Y5QSuShaMi6cqONlVZ3womknA5CiJ4PCeZEI="
+            alt="Quiz"
+            loading="lazy"
+          />
+          <div class="res-content">
+            <h3 data-i18n="res_quiz_title">Quizzes & Practice</h3>
+            <p data-i18n="res_quiz_text">
+              Short quizzes with instant feedback — useful for last-minute
+              revision.
+            </p>
+            <div class="actions">
+              <a href="#" class="btn-outline">Try Quiz</a>
+              <a href="#" class="btn-primary">View Answers</a>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="notes">
+        <h4 data-i18n="res_notes_more">Notes & guidance for teachers</h4>
+        <p class="muted" data-i18n="res_notes_more_text">
+          Guides on low-tech classroom techniques, printing-friendly PDFs and
+          small-group learning ideas.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <strong>EduConnect</strong>
+          <p class="muted">SDG 4 • Rural Goa</p>
+        </div>
+        <div>
+          <a href="index.html">Home</a><br /><a href="mentorship.html"
+            >Mentorship</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      function logout() {
+        localStorage.removeItem("loggedIn");
+        window.location.href = "login.html";
+      }
+    </script>
+    <script src="script.js"></script>
+    <script>
+      function applySettings() {
+        const s = JSON.parse(localStorage.getItem("settings")) || {};
+        document.body.style.fontSize =
+          s.fontSize === "small"
+            ? "14px"
+            : s.fontSize === "medium"
+            ? "16px"
+            : s.fontSize === "large"
+            ? "18px"
+            : "16px";
+        document.body.style.fontFamily = s.fontStyle || "Arial, sans-serif";
+        document.querySelectorAll(".nav-link").forEach((el) => {
+          if (el.classList.contains("active")) {
+            el.style.backgroundColor = "#2f80ed";
+            el.style.color = "#fff";
+          } else {
+            el.style.color = "#0f1724";
+          }
+        });
+      }
+      applySettings();
+    </script>
+  </body>
+</html>

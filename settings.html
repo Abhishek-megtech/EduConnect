@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings - EduConnect</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 2rem;
+        background: var(--bg, #cfe8ff);
+        color: var(--text-color, #0f1724);
+      }
+      h1 {
+        margin-bottom: 1rem;
+      }
+      .setting {
+        margin-bottom: 1rem;
+      }
+      select,
+      input[type="checkbox"] {
+        margin-left: 0.5rem;
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Settings</h1>
+
+    <div class="setting">
+      <label>
+        Font Size:
+        <select id="fontSizeSelect">
+          <option value="small">Small</option>
+          <option value="medium">Medium</option>
+          <option value="large">Large</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="setting">
+      <label>
+        Font Style:
+        <select id="fontStyleSelect">
+          <option value="sans-serif">Sans-serif</option>
+          <option value="serif">Serif</option>
+          <option value="cursive">Cursive</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="setting">
+      <label>
+        Enable Notifications:
+        <input type="checkbox" id="notifyToggle" />
+      </label>
+    </div>
+
+    <script>
+      const fontSizeSelect = document.getElementById("fontSizeSelect");
+      const fontStyleSelect = document.getElementById("fontStyleSelect");
+      const notifyToggle = document.getElementById("notifyToggle");
+      const settings = JSON.parse(localStorage.getItem("settings")) || {};
+      if (settings.fontSize) fontSizeSelect.value = settings.fontSize;
+      if (settings.fontStyle) fontStyleSelect.value = settings.fontStyle;
+      if (settings.notifications) notifyToggle.checked = settings.notifications;
+      applySettings();
+      fontSizeSelect.addEventListener("change", saveSettings);
+      fontStyleSelect.addEventListener("change", saveSettings);
+      notifyToggle.addEventListener("change", saveSettings);
+
+      function saveSettings() {
+        const newSettings = {
+          fontSize: fontSizeSelect.value,
+          fontStyle: fontStyleSelect.value,
+          notifications: notifyToggle.checked,
+        };
+        localStorage.setItem("settings", JSON.stringify(newSettings));
+        applySettings();
+      }
+
+      function applySettings() {
+        const s = JSON.parse(localStorage.getItem("settings")) || {};
+
+        document.body.style.fontSize =
+          s.fontSize === "small"
+            ? "14px"
+            : s.fontSize === "medium"
+            ? "16px"
+            : s.fontSize === "large"
+            ? "18px"
+            : "16px";
+        document.body.style.fontFamily = s.fontStyle || "Arial, sans-serif";
+      }
+    </script>
+  </body>
+</html>

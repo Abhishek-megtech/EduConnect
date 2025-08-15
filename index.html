@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="auth.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>EduConnect — Quality Education for Rural Goa</title>
+    <meta
+      name="description"
+      content="EduConnect: bridging educational gaps in rural Goa. SDG 4 aligned — resources, mentorship & career guidance."
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .nav-links {
+        display: flex;
+        gap: 1rem;
+      }
+      .nav-settings a {
+        font-size: 36px;
+        text-decoration: none;
+      }
+      .nav-settings a:hover {
+        transform: scale(1.2);
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="topbar container">
+        <div class="brand">EduConnect</div>
+        <div class="controls">
+          <button class="btn-lang" data-lang="en" aria-pressed="true">
+            EN
+          </button>
+          <button class="btn-lang" data-lang="hi">HI</button>
+          <button class="btn-lang" data-lang="ko">KO</button>
+          <button class="btn-logout" onclick="logout()">Logout</button>
+        </div>
+      </div>
+
+      <nav class="nav container" role="navigation" aria-label="Main navigation">
+        <div class="nav-links">
+          <a href="index.html" class="nav-link active" data-i18n="nav_home"
+            >Home</a
+          >
+          <a href="resources.html" class="nav-link" data-i18n="nav_resources"
+            >Resources</a
+          >
+          <a href="mentorship.html" class="nav-link" data-i18n="nav_mentorship"
+            >Mentorship</a
+          >
+          <a href="contact.html" class="nav-link" data-i18n="nav_contact"
+            >Contact</a
+          >
+        </div>
+        <div class="nav-settings">
+          <a href="settings.html" class="nav-link" title="Settings">⚙️</a>
+        </div>
+      </nav>
+
+      <div class="hero container">
+        <div class="hero-left">
+          <h1 data-i18n="hero_title">
+            EduConnect — Bridging Educational Gaps in Rural Goa
+          </h1>
+          <p class="lead" data-i18n="hero_sub">
+            A responsive digital hub providing curriculum-aligned resources,
+            volunteer mentors, and career guidance for Goa Board students.
+          </p>
+          <div class="hero-cta">
+            <a
+              href="resources.html"
+              class="btn-primary"
+              data-i18n="cta_resources"
+              >Explore Resources</a
+            >
+            <a href="mentorship.html" class="btn-outline" data-i18n="cta_mentor"
+              >Join as Mentor</a
+            >
+          </div>
+        </div>
+        <div class="hero-right">
+          <img
+            src="https://t6866c.csb.app/students.jpg"
+            alt="Students learning"
+            id="heroImage"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="problem" aria-labelledby="problemHeading">
+        <h2 id="problemHeading" data-i18n="problem_heading">
+          Problem Statement
+        </h2>
+        <p data-i18n="problem_text">
+          In rural parts of Goa, students often face lack of digital access,
+          shortage of trained educators, and limited academic guidance —
+          creating unequal learning outcomes. EduConnect aims to reduce this
+          inequality with accessible tools and local mentorship.
+        </p>
+      </section>
+
+      <section class="features" aria-labelledby="featuresHeading">
+        <h2 id="featuresHeading" data-i18n="features_heading">Key Features</h2>
+        <div class="grid">
+          <article class="card">
+            <h3 data-i18n="feat_1_title">Curriculum-Aligned Notes</h3>
+            <p data-i18n="feat_1_text">
+              Free downloadable notes & concise concept videos for Goa Board
+              syllabus.
+            </p>
+          </article>
+          <article class="card">
+            <h3 data-i18n="feat_2_title">Volunteer Mentorship</h3>
+            <p data-i18n="feat_2_text">
+              Connects students to volunteer tutors for doubt clarification.
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      function logout() {
+        localStorage.removeItem("loggedIn");
+        window.location.href = "login.html";
+      }
+    </script>
+
+    <script src="script.js"></script>
+    <script>
+      function applySettings() {
+        const s = JSON.parse(localStorage.getItem("settings")) || {};
+
+        document.body.style.fontSize =
+          s.fontSize === "small"
+            ? "14px"
+            : s.fontSize === "medium"
+            ? "16px"
+            : s.fontSize === "large"
+            ? "18px"
+            : "16px";
+
+        document.body.style.fontFamily = s.fontStyle || "Arial, sans-serif";
+
+        document.querySelectorAll(".nav-link").forEach((el) => {
+          if (el.classList.contains("active")) {
+            el.style.backgroundColor = "#2f80ed";
+            el.style.color = "#fff";
+          } else {
+            el.style.color = "#0f1724";
+          }
+        });
+      }
+      applySettings();
+    </script>
+  </body>
+</html>

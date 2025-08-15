@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="auth.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>EduConnect — Mentorship</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header small-header">
+      <div class="topbar container">
+        <div class="brand">EduConnect</div>
+        <div class="controls">
+          <button class="btn-lang" data-lang="en">EN</button>
+          <button class="btn-lang" data-lang="hi">HI</button>
+          <button class="btn-lang" data-lang="kn">KO</button>
+          <div class="hero-right">
+            <button class="btn-logout" onclick="logout()">Logout</button>
+          </div>
+        </div>
+      </div>
+
+      <nav class="nav container" role="navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="resources.html" class="nav-link">Resources</a>
+        <a href="mentorship.html" class="nav-link active">Mentorship</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <div class="nav-right">
+          <a href="settings.html" class="settings-emoji">⚙️</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section>
+        <h1 data-i18n="ment_heading">Mentorship & Volunteer Signup</h1>
+
+        <p class="muted" data-i18n="ment_sub">
+          Volunteers (teachers, tutors & college students) can sign up to mentor
+          students. Students can request 1:1 sessions or group doubt clearing.
+        </p>
+      </section>
+
+      <section class="form-wrap" aria-labelledby="signupForm">
+        <form id="mentorForm" class="card" novalidate>
+          <h3 data-i18n="ment_form_title">Sign up to volunteer</h3>
+
+          <label for="vname" data-i18n="form_name">Full name</label>
+          <input id="vname" name="name" required />
+
+          <label for="vemail" data-i18n="form_email">Email</label>
+          <input id="vemail" name="email" type="email" required />
+
+          <label for="vphone" data-i18n="form_phone">Phone / WhatsApp</label>
+          <input id="vphone" name="phone" />
+
+          <label for="vsubjects" data-i18n="form_subjects"
+            >Subjects you can teach</label
+          >
+          <input
+            id="vsubjects"
+            name="subjects"
+            placeholder="e.g., Maths, Physics"
+          />
+
+          <label for="varea" data-i18n="form_area"
+            >Preferred location (village/taluka)</label
+          >
+          <input id="varea" name="area" />
+
+          <div class="form-actions">
+            <button class="btn-primary" type="submit" data-i18n="form_submit">
+              Sign Up
+            </button>
+            <button class="btn-outline" type="reset" data-i18n="form_reset">
+              Reset
+            </button>
+          </div>
+
+          <p
+            id="formMsg"
+            class="muted small"
+            role="status"
+            aria-live="polite"
+          ></p>
+        </form>
+      </section>
+
+      <section class="ment-list">
+        <h4 data-i18n="ment_list_heading">Active Volunteers (demo)</h4>
+        <ul id="volList" class="muted small">
+          <li>Loading saved volunteers…</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <strong>EduConnect</strong>
+          <p class="muted">SDG 4 • Rural Goa</p>
+        </div>
+        <div>
+          <a href="index.html">Home</a><br />
+          <a href="resources.html">Resources</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      function logout() {
+        localStorage.removeItem("loggedIn");
+        window.location.href = "login.html";
+      }
+    </script>
+    <script src="script.js"></script>
+    <script>
+      function applySettings() {
+        const s = JSON.parse(localStorage.getItem("settings")) || {};
+
+        document.body.style.fontSize =
+          s.fontSize === "small"
+            ? "14px"
+            : s.fontSize === "medium"
+            ? "16px"
+            : s.fontSize === "large"
+            ? "18px"
+            : "16px";
+
+        document.body.style.fontFamily = s.fontStyle || "Arial, sans-serif";
+        document.querySelectorAll(".nav-link").forEach((el) => {
+          if (el.classList.contains("active")) {
+            el.style.backgroundColor = "#2f80ed";
+            el.style.color = "#fff";
+          } else {
+            el.style.color = "#0f1724";
+          }
+        });
+      }
+      applySettings();
+    </script>
+  </body>
+</html>

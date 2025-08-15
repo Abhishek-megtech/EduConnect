@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduConnect - Login</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #e0f2ff, #f9fcff);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      .book {
+        position: absolute;
+        font-size: 28px;
+        opacity: 0.8;
+        animation: floatBooks linear infinite;
+      }
+
+      @keyframes floatBooks {
+        0% {
+          transform: translateY(100vh) rotate(0deg);
+          opacity: 0;
+        }
+        20% {
+          opacity: 1;
+        }
+        80% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-20vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      .login-container {
+        display: flex;
+        background: white;
+        border-radius: 18px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        overflow: hidden;
+        width: 850px;
+        max-width: 95%;
+        animation: fadeIn 1s ease;
+        z-index: 1;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .login-left {
+        background: linear-gradient(135deg, #2f80ed, #56ccf2);
+        color: white;
+        flex: 1;
+        padding: 50px 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+      }
+      .login-left h1 {
+        font-size: 32px;
+        margin-bottom: 10px;
+      }
+      .login-left p {
+        font-size: 16px;
+        opacity: 0.9;
+      }
+      .login-left img {
+        width: 150px;
+        margin: 20px auto;
+      }
+
+      .login-right {
+        flex: 1;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .login-right h2 {
+        text-align: center;
+        color: #2f80ed;
+        font-size: 26px;
+        margin-bottom: 20px;
+      }
+
+      .input-group {
+        position: relative;
+        margin: 12px 0;
+        width: 100%;
+      }
+      .input-group input {
+        width: 100%;
+        padding: 12px 42px 12px 15px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        outline: none;
+        font-size: 15px;
+        background: #f9f9f9;
+        transition: border 0.3s;
+        box-sizing: border-box;
+        display: block;
+      }
+      .input-group input:focus {
+        border: 1px solid #2f80ed;
+      }
+      .input-group span {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #666;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      button {
+        background: linear-gradient(135deg, #2f80ed, #56ccf2);
+        color: white;
+        padding: 12px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+        font-weight: bold;
+        transition: 0.3s;
+        margin-top: 10px;
+        box-sizing: border-box;
+      }
+      button:hover {
+        background: linear-gradient(135deg, #1c5fd4, #3da7e2);
+      }
+
+      .links {
+        margin-top: 15px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+      }
+      .links a {
+        text-decoration: none;
+        color: #2f80ed;
+      }
+      .links a:hover {
+        text-decoration: underline;
+      }
+
+      .error-msg {
+        color: red;
+        font-size: 14px;
+        margin-top: 8px;
+        display: none;
+      }
+      .success-msg {
+        color: green;
+        font-size: 14px;
+        margin-top: 8px;
+        display: none;
+      }
+
+      @media (max-width: 768px) {
+        .login-container {
+          flex-direction: column;
+          width: 95%;
+        }
+        .login-left {
+          padding: 30px 20px;
+        }
+        .login-left h1 {
+          font-size: 26px;
+        }
+        .login-left img {
+          width: 120px;
+        }
+        .login-right {
+          padding: 25px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .login-left h1 {
+          font-size: 22px;
+        }
+        .login-left p {
+          font-size: 14px;
+        }
+        .login-right h2 {
+          font-size: 22px;
+        }
+        button {
+          font-size: 14px;
+          padding: 10px;
+        }
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <i
+      class="fa-solid fa-book book"
+      style="left: 10%; animation-duration: 10s; color: #ff6f61"
+    ></i>
+    <i
+      class="fa-solid fa-book book"
+      style="left: 30%; animation-duration: 12s; color: #6a5acd"
+    ></i>
+    <i
+      class="fa-solid fa-book book"
+      style="left: 50%; animation-duration: 14s; color: #20b2aa"
+    ></i>
+    <i
+      class="fa-solid fa-book book"
+      style="left: 70%; animation-duration: 11s; color: #ffb347"
+    ></i>
+    <i
+      class="fa-solid fa-book book"
+      style="left: 85%; animation-duration: 13s; color: #32cd32"
+    ></i>
+    <i
+      class="fa-solid fa-book book"
+      style="left: 20%; animation-duration: 15s; color: #ff1493"
+    ></i>
+    <i
+      class="fa-solid fa-book book"
+      style="left: 60%; animation-duration: 16s; color: #1e90ff"
+    ></i>
+
+    <div class="login-container">
+      <div class="login-left">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png"
+          alt="Education Icon"
+        />
+        <h1>EduConnect</h1>
+        <p>Empowering Learning, Anytime, Anywhere.</p>
+      </div>
+
+      <div class="login-right">
+        <h2><i class="fa fa-graduation-cap"></i> Login</h2>
+        <form id="loginForm">
+          <div class="input-group">
+            <input type="text" id="username" placeholder="Username" required />
+            <span><i class="fa fa-user"></i></span>
+          </div>
+          <div class="input-group">
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              required
+            />
+            <span id="togglePassword"><i class="fa fa-eye"></i></span>
+          </div>
+          <button type="submit">Login</button>
+
+          <div class="links">
+            <a href="#">Forgot Password?</a>
+            <a href="signup.html">Sign Up</a>
+          </div>
+
+          <div class="error-msg" id="errorMsg">
+            ❌ Invalid username or password
+          </div>
+          <div class="success-msg" id="successMsg">
+            ✅ Login successful! Redirecting...
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      const USER = "educonnect";
+      const PASS = "codecatalyst";
+      const errorMsg = document.getElementById("errorMsg");
+      const successMsg = document.getElementById("successMsg");
+      const togglePassword = document.getElementById("togglePassword");
+      const passwordField = document.getElementById("password");
+
+      togglePassword.addEventListener("click", () => {
+        const type =
+          passwordField.getAttribute("type") === "password"
+            ? "text"
+            : "password";
+        passwordField.setAttribute("type", type);
+        togglePassword.innerHTML =
+          type === "password"
+            ? '<i class="fa fa-eye"></i>'
+            : '<i class="fa fa-eye-slash"></i>';
+      });
+
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          let u = document.getElementById("username").value.trim();
+          let p = document.getElementById("password").value.trim();
+
+          if (u === USER && p === PASS) {
+            errorMsg.style.display = "none";
+            successMsg.style.display = "block";
+            localStorage.setItem("loggedIn", "true");
+            setTimeout(() => {
+              window.location.href = "home.html";
+            }, 1500);
+          } else {
+            successMsg.style.display = "none";
+            errorMsg.style.display = "block";
+          }
+        });
+    </script>
+  </body>
+</html>
