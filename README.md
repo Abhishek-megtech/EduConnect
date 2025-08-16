@@ -17,6 +17,9 @@ Responsive Design: Ensured the website layout adapts to different devices.
 
 This project showcases our first experience in web development and our initiative to create digital solutions for real-world educational challenges
 
+
 Login Details:
+
 Username : educonnect
+
 Password : codecatalyst
